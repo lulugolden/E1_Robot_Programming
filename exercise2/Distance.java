@@ -1,3 +1,4 @@
+package exercise2;
 import lejos.nxt.Button;
 import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
