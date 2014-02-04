@@ -11,13 +11,13 @@ public class Distance {
 
 	private final RangeFinder rFinder;
 	private final DifferentialPilot pilot;
-	private final static float STATIC_POINT = 150;
+	private final static float STATIC_POINT = 200;
 	private static final float MAX_RANGE = 800;
 	private int travelDirection = 1;
 	private final static int FORWARDS = 1;
 	private final static int BACKWARDS = -1;
 	private final static int STATIONARY = 0;
-	private final static double movementTime = 0.5;
+	private final static double movementTime = 0.25;
 
 	public Distance(RangeFinder rFinder, DifferentialPilot pilot) {
 		this.rFinder = rFinder;
@@ -28,22 +28,20 @@ public class Distance {
 		Sound.setVolume(Sound.VOL_MAX);
 
 		double speed = 0;
-		int delayMS = 300;
+		int delayMS = 150;
 
 		while (true) {
-			pilot.setTravelSpeed(speed);
+			pilot.setTravelSpeed(Math.abs(speed));
 			pilot.travel(speed * movementTime, true);
 			Delay.msDelay(delayMS);
-			float reading = rFinder.getRange();
-			float error = STATIC_POINT - reading;
+			Thread.yield();
+			float reading = 10* rFinder.getRange();
+			float error = reading - STATIC_POINT;
+			System.out.println(error);
+			speed = (0.2f * error);
 			
-			if(error<0){
-			speed = speed + (Math.abs(0.01f * error));
-			}
 			
-			else if(error>0){
-				speed = speed - (Math.abs(0.01f * error));
-			}
+			
 		}
 	}
 	/**
