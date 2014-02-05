@@ -5,7 +5,7 @@ import lejos.nxt.SensorPort;
 import lejos.robotics.navigation.DifferentialPilot;
 
 /**
- * Extension of the castorbot setup for a robot with two lightsensors
+ * Extension of the castorbot setup for a robot with two lightsensors on either side of the robot (left and right)
  * @author david
  *
  */
@@ -28,21 +28,37 @@ public class CastorBotLineFollow extends CastorBot{
 		
 	}
 
+	/**
+	 * Method returns the light sensor on the left hand side of the robot
+	 * @return The light sensor on the left side of the robot
+	 */
 	public LightSensor getLeft()
 	{
 		return leftSensor;
 	}
 	
+	/**
+	 * Method returns the light sensor on the left hand side of the robot
+	 * @return The light sensor on the right side of the robot
+	 */
 	public LightSensor getRight()
 	{
 		return rightSensor;
 	}
 	
+	/**
+	 * Method returns the sensor port the left hand light sensor is connected to
+	 * @return The sensor port the left hand light sensor is connected to.
+	 */
 	public SensorPort getLeftPort()
 	{
 		return leftLocation;
 	}
 	
+	/**
+	 * Method returns the sensor port the right hand light sensor is connected to
+	 * @return The sensor port the right hand light sensor is connected to.
+	 */
 	public SensorPort getRightPort()
 	{
 		return rightLocation;
