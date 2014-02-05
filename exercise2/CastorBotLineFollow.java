@@ -14,8 +14,8 @@ import lejos.robotics.navigation.DifferentialPilot;
 public class CastorBotLineFollow extends CastorBot{
 
 	
-	private LightSensor left;
-	private LightSensor right;
+	private LightSensor leftSensor;
+	private LightSensor rightSensor;
 	private SensorPort leftLocation;
 	private SensorPort rightLocation;
 	
@@ -23,19 +23,19 @@ public class CastorBotLineFollow extends CastorBot{
 		super(config);
 		leftLocation = leftPort; 
 		rightLocation = rightPort;		
-		left = new LightSensor(leftLocation);
-		right = new LightSensor(rightLocation);
+		leftSensor = new LightSensor(leftLocation);
+		rightSensor = new LightSensor(rightLocation);
 		
 	}
 
 	public LightSensor getLeft()
 	{
-		return left;
+		return leftSensor;
 	}
 	
 	public LightSensor getRight()
 	{
-		return right;
+		return rightSensor;
 	}
 	
 	public SensorPort getLeftPort()
