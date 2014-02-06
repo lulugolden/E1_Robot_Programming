@@ -3,14 +3,18 @@ package exercise2;
 import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
 import lejos.nxt.SensorPortListener;
+import lejos.nxt.Sound;
 import lejos.robotics.navigation.DifferentialPilot;
+import lejos.util.Delay;
 
 public class LightSensorListener implements SensorPortListener {
 
-	private DifferentialPilot pilot;
 	private boolean side;
 	public static final boolean LEFT = false;
 	public static final boolean RIGHT = true;
+	public final LineDancing demo;
+	private boolean adjusting;
+	public static final int THRESHOLD = 580;
 
 	/**
 	 * 
@@ -22,18 +26,28 @@ public class LightSensorListener implements SensorPortListener {
 	 *            though use of the class constants is 0
 	 * 
 	 */
-	public LightSensorListener(DifferentialPilot pilot, boolean side) {
-		this.pilot = pilot;
+	public LightSensorListener(boolean side, LineDancing demo) {
 		this.side = side;
+		this.demo = demo;
 	}
 
 	@Override
 	public void stateChanged(SensorPort aSource, int aOldValue, int aNewValue) {
-		System.out.println(aNewValue);
-		// if(//VALUES FOR THRESHOLD)
-		{
-			// DO the correct turn.
+
+		if (!side) {
+			aNewValue = aNewValue + 40;
+		}
+		if (aNewValue > THRESHOLD) {
+			adjusting = true;
+			demo.adjustPosition(side);
+			adjusting = false;
+
 		}
 
 	}
+
+	public boolean adjusting() {
+		return adjusting;
+	}
+
 }
