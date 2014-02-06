@@ -2,6 +2,7 @@ package exercise2;
 
 import lejos.nxt.Motor;
 import lejos.nxt.MotorPort;
+import lejos.nxt.NXTMotor;
 import lejos.nxt.NXTRegulatedMotor;
 
 /**
@@ -16,12 +17,13 @@ import lejos.nxt.NXTRegulatedMotor;
 public class WHEATLEYCONFIG implements Configuration {
 
 	private static final int length = 999;
-	private static final int wheelBase = 999;
+	private static final double wheelBase = 12.9;
 	private static final int diameter = 999;
-	private static final int wheelDiameter = 999;
-	private static final NXTRegulatedMotor left = Motor.C;
-	private static final NXTRegulatedMotor right = Motor.B;
-	
+	private static final double wheelDiameter = 5.6;
+	private static  NXTRegulatedMotor left = Motor.C;
+	private static  NXTRegulatedMotor right = Motor.B;
+	private static final int WHEATLEY_SPEED = 1000;
+	private static final int WHEATLEY_POWER = 100;
 
 	/**
 	 * Gives in mm the length from front to back of the robot.
@@ -41,7 +43,7 @@ public class WHEATLEYCONFIG implements Configuration {
 	 */
 	public int getWheelBase() {
 		// TODO Auto-generated method stub
-		return wheelBase;
+		return (int)wheelBase;
 	}
 
 	/**
@@ -62,18 +64,18 @@ public class WHEATLEYCONFIG implements Configuration {
 	 */
 	public int getWheelDiameter() {
 		// TODO Auto-generated method stub
-		return wheelDiameter;
+		return (int)wheelDiameter;
 	}
 
 	@Override
 	public NXTRegulatedMotor getLeftMotor() {
-		// TODO Auto-generated method stub
+		left.setSpeed(left.getMaxSpeed());
 		return left;
 	}
 
 	@Override
 	public NXTRegulatedMotor getRightMotor() {
-		// TODO Auto-generated method stub
+		right.setSpeed(right.getMaxSpeed());
 		return right;
 	}
 
