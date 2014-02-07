@@ -8,15 +8,29 @@ import lejos.robotics.navigation.DifferentialPilot;
 import lejos.util.Delay;
 import lejos.nxt.LightSensor;
 
+/**
+ * Class that allows a robot using the layout of sensors defined in the
+ * CastorBotLineFollow class to follow a single dark coloured line on a white
+ * background
+ * 
+ * @author Team E1
+ * 
+ */
 public class LineDancing {
 
-	private LightSensorListener leftListener;
-	private LightSensorListener rightListener;
-	private CastorBotLineFollow robot;
-	private final static int ROTATION_CONSTANT = 10;
+	protected LightSensorListener leftListener;
+	protected LightSensorListener rightListener;
+	protected CastorBotLineFollow robot;
+	protected final static int ROTATION_CONSTANT = 15;
+	private final static int TRAVELMM = 30;
 
-	// Takes in a CastorBotLineFollow which is a robot with two light sensors on
-	// it as a parameter
+	/**
+	 * Takes in a CastorBotLineFollow which is a CastorBot with two light
+	 * sensors on it as a parameter
+	 * 
+	 * @param robot
+	 *            The CastorBorLineFollow entity being used
+	 */
 	public LineDancing(CastorBotLineFollow robot) {
 
 		// Listeners are declared now because they are specific to the task.
@@ -27,6 +41,12 @@ public class LineDancing {
 		robot.getRightPort().addSensorPortListener(rightListener);
 	}
 
+	/**
+	 * Run method that executes the main task of the program. Makes robot follow
+	 * a line by travelling forward a set amount and adjsuting the course of the
+	 * robot as direct by the listener which checks that the robot is staying on
+	 * the line
+	 */
 	public void run() {
 
 		robot.getRight().setFloodlight(true);
@@ -34,7 +54,7 @@ public class LineDancing {
 		robot.getPilot().setTravelSpeed(robot.getPilot().getMaxTravelSpeed());
 		while (true) {
 			while (!(leftListener.adjusting() || rightListener.adjusting())) {
-				robot.getPilot().travel(10, true);
+				robot.getPilot().travel(TRAVELMM, true);
 				Thread.yield();
 			}
 
@@ -55,10 +75,8 @@ public class LineDancing {
 		}
 	}
 
-	
-	
 	/**
-	 * @param args
+	 * @param args The launch arguments
 	 */
 	public static void main(String[] args) {
 
