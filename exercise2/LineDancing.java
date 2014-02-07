@@ -10,10 +10,10 @@ import lejos.nxt.LightSensor;
 
 public class LineDancing {
 
-	private LightSensorListener leftListener;
-	private LightSensorListener rightListener;
-	private CastorBotLineFollow robot;
-	private final static int ROTATION_CONSTANT = 10;
+	protected LightSensorListener leftListener;
+	protected LightSensorListener rightListener;
+	protected CastorBotLineFollow robot;
+	protected final static int ROTATION_CONSTANT = 10;
 
 	// Takes in a CastorBotLineFollow which is a robot with two light sensors on
 	// it as a parameter
