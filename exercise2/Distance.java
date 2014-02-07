@@ -74,7 +74,8 @@ public class Distance {
 	 * objects and then calls the run method to start the robots desired
 	 * behaviour
 	 * 
-	 * @param args Main method arguments.
+	 * @param args
+	 *            Main method arguments.
 	 */
 	public static void main(String[] args) {
 
