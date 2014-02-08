@@ -18,8 +18,8 @@ import lejos.util.Delay;
  */
 public class Distance {
 
-	private final RangeFinder rFinder;
-	private final DifferentialPilot pilot;
+	private final RangeFinder RFINDER;
+	private final DifferentialPilot PILOT;
 	private final static float STATIC_POINT = 200;
 	private static final float MAX_RANGE = 800;
 	private int travelDirection = 1;
@@ -37,8 +37,8 @@ public class Distance {
 	 *            Differential pilot to allow movement
 	 */
 	public Distance(RangeFinder rFinder, DifferentialPilot pilot) {
-		this.rFinder = rFinder;
-		this.pilot = pilot;
+		this.RFINDER = rFinder;
+		this.PILOT = pilot;
 	}
 
 	/**
@@ -57,11 +57,11 @@ public class Distance {
 		int delayMS = 150;
 
 		while (true) {
-			pilot.setTravelSpeed(Math.abs(speed));
-			pilot.travel(speed * movementTime, true);
+			PILOT.setTravelSpeed(Math.abs(speed));
+			PILOT.travel(speed * movementTime, true);
 			Delay.msDelay(delayMS);
 			Thread.yield();
-			float reading = 10 * rFinder.getRange();
+			float reading = 10 * RFINDER.getRange();
 			float error = reading - STATIC_POINT;
 			System.out.println(error);
 			speed = (0.2f * error);
