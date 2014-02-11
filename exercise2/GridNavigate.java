@@ -21,6 +21,7 @@ import lejos.nxt.SensorPort;
  */
 public class GridNavigate extends LineDancing {
 
+	//Constants for inputting direction more easily
 	private static final int UP = 0;
 	private static final int RIGHT = 1;
 	private static final int DOWN = 2;
